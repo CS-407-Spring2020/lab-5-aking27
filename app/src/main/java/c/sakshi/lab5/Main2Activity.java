@@ -3,7 +3,9 @@ package c.sakshi.lab5;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,8 +20,11 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        TextView welcome = (TextView) findViewById(R.id.welcome);
-        //welcome.setText("Welcome " + MainActivity.getUserInfo());
+        welcome = (TextView) findViewById(R.id.welcome);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("c.sakshi.lab5", Context.MODE_PRIVATE);
+        String username = sharedPreferences.getString("username", "");
+        welcome.setText(String.format("Welcome %s", username));
     }
 
     @Override
@@ -36,6 +41,8 @@ public class Main2Activity extends AppCompatActivity {
             case R.id.logout:
                 Toast.makeText(this, "Logout Selected", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, MainActivity.class);
+                SharedPreferences sharedPreferences = getSharedPreferences("c.sakshi.lab5", Context.MODE_PRIVATE);
+                sharedPreferences.edit().remove("username").apply();
                 startActivity(intent);
                 return true;
             case R.id.note:

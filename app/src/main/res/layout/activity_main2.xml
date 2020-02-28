@@ -13,5 +13,6 @@
         android:layout_marginTop="100dp"
         android:text="TextView"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="153dp" />
+        tools:layout_editor_absoluteX="153dp"
+        app:layout_constraintHorizontal_bias="0.5"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

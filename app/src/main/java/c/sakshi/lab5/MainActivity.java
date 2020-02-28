@@ -20,14 +20,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
+        String usernameKey = "username";
         SharedPreferences sharedPreferences = getSharedPreferences("c.sakshi.lab5", Context.MODE_PRIVATE);
 
-        if(!sharedPreferences.getString("username", "").equals("")){
-            if(sharedPreferences.getString("username", "").equals("hello")){
+        if(!sharedPreferences.getString(usernameKey, "").equals("")){
+//            if(sharedPreferences.getString("username", "").equals("hello")){
                 startActivity(new Intent(this, Main2Activity.class));
-            }
+//            }
         } else {
             setContentView(R.layout.activity_main);
         }
@@ -44,6 +43,10 @@ public class MainActivity extends AppCompatActivity {
     public void login(View view){
         String user = username.getText().toString();
         String pass = password.getText().toString();
+
+        SharedPreferences sharedPreferences = getSharedPreferences("c.sakshi.lab5", Context.MODE_PRIVATE);
+        sharedPreferences.edit().putString("username", user).apply();
+
         Toast toast = Toast.makeText(this, user + " " + pass, Toast.LENGTH_SHORT);
         toast.show();
         Intent intent = new Intent(this, Main2Activity.class);
