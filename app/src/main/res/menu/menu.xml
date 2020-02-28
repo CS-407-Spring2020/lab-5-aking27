@@ -8,6 +8,6 @@
         />
     <item
         android:id="@+id/note"
-        android:title="New Note"
-        app:showAsAction="never" >
+        android:title="Add Note"
+        app:showAsAction="never" />
 </menu>
