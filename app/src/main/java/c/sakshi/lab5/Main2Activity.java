@@ -8,14 +8,18 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Main2Activity extends AppCompatActivity {
-
+    TextView welcome;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
+        TextView welcome = (TextView) findViewById(R.id.welcome);
+        //welcome.setText("Welcome " + MainActivity.getUserInfo());
     }
 
     @Override
