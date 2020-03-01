@@ -40,4 +40,15 @@ public class DBHelper {
         sqLiteDatabase.close();
         return notesList;
     }
+
+    public void saveNotes(String username, String title, String content, String date){
+        createTable();
+        sqLiteDatabase.execSQL(String.format("INSERT INTO notes (username, date, title, content) VALUES ('%s', '%s', '%s', '%s')",
+                username, date, title, content));
+    }
+    public void updateNotes(String title, String date, String content, String username){
+        createTable();
+        sqLiteDatabase.execSQL(String.format("UPDATE notes set content = '%s', date = '%s' where title = '%s' and username = '%s'",
+                content, date, title, username));
+    }
 }
