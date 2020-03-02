@@ -73,6 +73,8 @@ public class Main2Activity extends AppCompatActivity {
                 return true;
             case R.id.note:
                 Toast.makeText(this, "New Note selected", Toast.LENGTH_SHORT).show();
+                Intent intent2 = new Intent(this, Main3Activity.class);
+                startActivity(intent2);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
