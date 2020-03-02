@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 
 public class Main2Activity extends AppCompatActivity {
     TextView welcome;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +33,10 @@ public class Main2Activity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("c.sakshi.lab5", Context.MODE_PRIVATE);
         String username = sharedPreferences.getString("username", "");
         welcome.setText(String.format("Welcome %s", username));
+
+        SQLiteDatabase sqLiteDatabase = getApplicationContext().openOrCreateDatabase("notes", Context.MODE_PRIVATE, null);
+        DBHelper dbHelper = new DBHelper(sqLiteDatabase);
+        notes = dbHelper.readNotes(username);
 
         ArrayList<String> displayNotes = new ArrayList<>();
         for(Note note : notes){
